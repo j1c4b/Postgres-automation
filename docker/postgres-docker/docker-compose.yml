@@ -1,0 +1,19 @@
+# docker-compose.yml
+# This file is used to set up a PostgreSQL database using Docker Compose.
+# It defines the services, networks, and volumes required for the database.
+services:
+  db:
+    image: postgres:15
+    container_name: jacob_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: jacobg
+      POSTGRES_PASSWORD: Odessa#25
+      POSTGRES_DB: tradedb
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jacobg -d tradedb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
